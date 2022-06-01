@@ -1,12 +1,18 @@
 const express = require('express');
-const externalModule = require('./logger')
+// const externalModule = require('./logger')
+const externalModulea = require('../logger/logger')
+const externalModuleb =require('../util/helper')
+const externalModulec= require ('../validator/formater')
 
 const router = express.Router();
 
 router.get('/test-me', function (req, res) {
-    console.log('The constant in logger route has a value '+externalModule.endpoint)
-    console.log('The current batch is '+externalModule.batch)
-    externalModule.log()
+    externalModulea.welcome()
+    externalModuleb.printDate()
+    externalModuleb.getMonth()
+    externalModuleb.getBatchInfo()
+    externalModulec.d()
+
     res.send('My first ever api!')
 });
 
@@ -27,4 +33,4 @@ router.get('/test-me4', function (req, res) {
 });
 
 module.exports = router;
-// adding this comment for no reason
+// adding this comment for no reasongit  checko
