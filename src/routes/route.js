@@ -3,16 +3,14 @@ const router = express.Router();
 // const UserModel= require("../models/userModel.js")
 // const UserController= require("../controllers/userController")
 // const newBookController= require("../controllers/newBookController");
-
+// const newBookModel = require('../models/newBookModel');
 const updateBookController=require("../controllers/updateBookControllers");
 const authorController=require("../controllers/authorController");
-// const newBookModel = require('../models/newBookModel');
-
-router.get("/test-me", function (req, res) {
-    res.send("My first ever api!")
-})
 
 
+// router.get("/test-me", function (req, res) {
+//     res.send("My first ever api!")
+// })
 // router.post("/createUser", UserController.createUser  )
 
 // router.get("/getUsersData", UserController.getUsersData)
@@ -26,11 +24,16 @@ router.get("/test-me", function (req, res) {
 // router.post("/getParticularBooks",  newBookController.getParticularBooks )
 
 // router.get("/getXINRBooks",newBookController.getXINRBooks)
+
 // router.get("/getRandomBooks",newBookController.getRandomBooks)
+
+
+
 router.post("/createAuthor",authorController.createAuthor)
 router.post("/updateBook",updateBookController.updateBook)
 router.get("/getBookByAuthor",authorController.getBookByAuthor)
 router.get("/getAuthor",authorController.getAuthor)
 router.get("/findBook",authorController.findBook)
+router.get("/bookByAuthor/author_id",authorController.bookByAuthor)
 
 module.exports = router;

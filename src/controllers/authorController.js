@@ -1,5 +1,6 @@
 const authorModels= require("../models/authorModels")
 const updateBookModels= require("../models/updateBookModels")
+// const updateBookController=require("../controllers/updateBookController")
 const createAuthor= async function (req, res) {
     let data= req.body
     let savedData= await authorModels.create(data)
@@ -41,7 +42,19 @@ const findBook=async function(req, res){
      res.send({msg:temp })
     }
 
+    const bookByAuthor =async function (req,res){
+let author= await  authorModels.find().select("author_id")
+let late = await (await updateBookModels.find({author_id :author})).select({bookName:1})
+
+        res.send({msg:late }) 
+    }
+
 module.exports.createAuthor =createAuthor
 module.exports.getBookByAuthor=getBookByAuthor
 module.exports.getAuthor=getAuthor
 module.exports.findBook=findBook
+module.exports.bookByAuthor =bookByAuthor
+
+
+
+// git branch -a assignmentmodule
