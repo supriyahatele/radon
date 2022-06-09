@@ -43,10 +43,14 @@ const findBook=async function(req, res){
     }
 
     const bookByAuthor =async function (req,res){
-let author= await  authorModels.find().select("author_id")
-let late = await (await updateBookModels.find({author_id :author})).select({bookName:1})
-
-        res.send({msg:late }) 
+        let ab=req.body.author_id
+let author= await  authorModels.find({ "author_id":ab})
+let late = await updateBookModels.find({author_id :author[0].author_id}).select({bookName:1,_id:0})
+res.send({msg:late }) 
+    }
+ const listOfAuthor= async function (req,res){
+        let book = await authorModels.find({ $and:[{   age:{$gt: 50},rating: { $gt:4} }  ]  }).select({authorName:1,age:1, _id:0})
+        res.send({msg:book})    
     }
 
 module.exports.createAuthor =createAuthor
@@ -54,6 +58,8 @@ module.exports.getBookByAuthor=getBookByAuthor
 module.exports.getAuthor=getAuthor
 module.exports.findBook=findBook
 module.exports.bookByAuthor =bookByAuthor
+module.exports.listOfAuthor=listOfAuthor
+
 
 
 

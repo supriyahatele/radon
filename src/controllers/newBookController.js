@@ -1,39 +1,38 @@
 const { count } = require("console")
-const bookModel= require("../models/newBookModel")
-// const newBookModel=require("../controllers/newbookcontroller")
-const newBookModel=require("../models/newBookModel")
+// const bookModel= require("../models/newBookModel")
+const newBookModels=require("../models/newBookModels")
 const createBook= async function (req, res) {
     let data= req.body
 
-    let savedData= await newBookModel.create(data)
+    let savedData= await newBookModels.create(data)
     res.send({msg: savedData})
 }
 
 const getbooklist= async function (req, res) {
 
-let allBooks= await newBookModel.find().select({ bookName:1 ,authorName:1})
+let allBooks= await newBookModels.find().select({ bookName:1 ,authorName:1})
 res.send({msg: allBooks})
 }
 const getBooksInYear= async function(req,res){
     let data= req.body.year
     // if(newBookModel.year=== data){
-let bookyear= await newBookModel.find({"year": data})
+let bookyear= await newBookModels.find({"year": data})
 res.send({msg: bookyear})
     }
 // }
 const getParticularBooks =async function(req,res){
     let data =req.body
     
-let ParticularBooks=await newBookModel.find(data)
+let ParticularBooks=await newBookModels.find(data)
 res.send({msg: ParticularBooks})
       
 }
  const getXINRBooks =async function (req,res) {
-    let BooksInr = await newBookModel.find({ $or:[{"price.indianPrice": { $eq:"100INR"}},{"price.indianPrice": { $eq:"200INR"}},{"price.indianPrice": { $eq:"500INR"} }]} )  
+    let BooksInr = await newBookModels.find({ $or:[{"price.indianPrice": { $eq:"100INR"}},{"price.indianPrice": { $eq:"200INR"}},{"price.indianPrice": { $eq:"500INR"} }]} )  
     res.send({msg: BooksInr})
  }
 const getRandomBooks= async function(req,res){
-    let RandomBooks =await newBookModel.find({$or: [ {stockAvailable : true } , { totalPages:{$gt :500 } } ]})
+    let RandomBooks =await newBookModels.find({$or: [ {stockAvailable : true } , { totalPages:{$gt :500 } } ]})
     res.send({msg: RandomBooks})    
 }
 module.exports.createBook= createBook
