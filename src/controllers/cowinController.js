@@ -203,4 +203,4 @@ module.exports.weather = weather;
 module.exports.onlyweather=onlyweather
 module.exports.getSortedCities = getSortedCities;
 module.exports.meme = meme;
-module.exports.getmemes=getmemes
+module.exports.getmemes=getmemes     
